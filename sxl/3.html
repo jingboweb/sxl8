@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<title>禾米云购</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+			}
+			#case{
+				width: 100%;	
+				font-size: 12px;
+				color: #666;
+			}
+			#header{
+				width: 100%;
+				height: 44px;
+				line-height: 44px;
+				background: red;
+				color: white;
+				font-size: 18px;
+				text-align: center;
+				position: fixed;
+				top: 0;
+			}
+			#nav{
+				width: 100%;
+				margin: 54px 0 10px;
+				overflow: hidden;
+			}
+			#nav li{
+				float: left;
+				width: 20%;
+				height: 71px;
+				text-align: center;
+			}
+			#nav a{
+				width: 50%;
+			}
+			#nav img{
+				width: 34px;
+				display: block;
+				margin: 0 auto;
+			}
+			#banner{
+				width: 100%;
+				height: 35px;
+				line-height: 35px;
+				border-bottom: 1px solid #DADADA;
+			}
+			#content_nav{
+				width: 100%;
+				height: 44px;
+				border-bottom: 1px solid #DADADA;
+			}
+			#content_nav li{
+				float: left;
+				width: 25%;
+				height: 100%;
+				font-size: 14px;
+			}
+			#content_nav a{
+				color: #333;
+				width: 44px;
+				height: 32px;
+				line-height: 32px;
+				display: block;
+				margin: 6px auto;
+				text-align: center;
+			}
+			#content_nav .current a{
+				color: #F2473D;
+				border-bottom: 2px solid #F2473D;
+			}
+			#product{
+				width: 100%;
+				overflow: hidden;
+			}
+			#product li{
+				float: left;
+				width: 49.5%;
+				height: 178px;
+				border-bottom: 1px solid #DADADA;
+				text-align: center;
+			}
+			#product img{
+				width: 140px;
+			}
+			#footer{
+				width: 100%;
+				height: 50px;
+				border-top: 1px solid #DADADA;
+				position: fixed;
+				bottom: 0;
+				background: white;
+			}
+			#footer li{
+				float: left;
+				width: 25%;
+				height: 50px;
+				text-align: center;
+			}
+			#footer a{
+				width: 100%;
+			}
+			#footer .current a{
+				color: #F2473D;
+			}
+			#footer img{
+				width: 22px;
+				display: block;
+				margin: 6px auto 2px;
+			}
+			@media only screen and (min-width: 640px) {
+				#case,#header,#footer{
+					width: 640px;
+					margin: 0 auto;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="case">
+			<div id="header">禾米云购</div>
+			<ul id="nav">
+				<li>
+					<a href="#">
+						<img src="menu1.png"/>
+						<span>分类</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="menu2.png"/>
+						<span>云购</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="menu3.png"/>
+						<span>晒单</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="menu4.png"/>
+						<span>新人帮助</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="menu5.png"/>
+						<span>签到</span>
+					</a>
+				</li>
+			</ul>
+			<div id="banner">1111</div>
+			<ul id="content_nav">
+				<li class="current"><a href="#">人气</a></li>
+				<li><a href="#">最新</a></li>
+				<li><a href="#">扫单</a></li>
+				<li><a href="#">推荐</a></li>
+			</ul>
+			<ul id="product">
+				<li><a href="#"><img src="goods1.jpg"/></a></li>
+				<li><a href="#"><img src="goods2.jpg"/></a></li>
+				<li><a href="#"><img src="goods1.jpg"/></a></li>		
+				<li><a href="#"><img src="goods2.jpg"/></a></li>
+				<li><a href="#"><img src="goods1.jpg"/></a></li>
+				<li><a href="#"><img src="goods2.jpg"/></a></li>					
+			</ul>
+			<ul id="footer">
+				<li class="current">
+					<a href="#">
+						<img src="bottomMenu1.png"/>
+						<span>首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="bottomMenu2.png"/>
+						<span>最新揭晓</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="bottomMenu3.png"/>
+						<span>发现</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="bottomMenu4.png"/>
+						<span>个人中心</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<script type="text/javascript">
+		
+			var i=0;
+			$("#content_nav li").click(function () {
+				$("#content_nav li").eq(i).removeClass("current");
+				i=$(this).index();
+				$(this).addClass("current");
+			});
+			
+			$.ajax({
+		       url:"http://120.55.86.40:81/yiyuanapi/goods/getGoodsList",
+		       dataType:"json",
+		       type:"GET",
+		       data:"?catDir=&catId=&sort=2&pageNum=1",
+		       success:function (msg) {    
+				   console.log(msg);
+				},error:function(error){
+				   console.log("ERROR:" + error);
+				}
+			});
+
+
+		</script>  
+	</body>
+</html>
